@@ -1,30 +1,89 @@
 module Program.Api.Declaration exposing (..)
 
+import Dict.Any
 import Id
-import Id.Random
-import Program.Api.Meta
-import Task
+import Json.Decode
+import Program.Api.FunctionExpression
+import Program.Api.Type
+import Program.Api.User
+import Time
 
 
-type alias Declaration =
-    { name : String
-    , description : String
+type Declaration
+    = Function_ Function
+    | AndType_ AndType
+    | OrType_ OrType
 
-    --
-    , meta : Program.Api.Meta.Meta
+
+
+--
+
+
+type alias Function =
+    { meta : Meta
+    , inputs : Dict.Any.Dict (Id.Id Input) Input
+    , expression : Program.Api.FunctionExpression.FunctionExpression
     }
 
 
-new : Task.Task x ( Id.Id Declaration, Declaration )
-new =
-    Task.map2
-        (\x x2 ->
-            ( x
-            , Declaration
-                "Declaration"
-                ""
-                x2
-            )
-        )
-        Id.Random.generate
-        Program.Api.Meta.new
+
+--
+
+
+type alias AndType =
+    { meta : Meta
+    , inputs : Dict.Any.Dict (Id.Id Input) Input
+    , expression : Program.Api.Type.AndExpression
+    }
+
+
+
+--
+
+
+type alias OrType =
+    { meta : Meta
+    , inputs : Dict.Any.Dict (Id.Id Input) Input
+    , variants : Dict.Any.Dict (Id.Id Variant) Variant
+    }
+
+
+
+--
+
+
+type alias Input =
+    { name : String
+    , description : String
+    , data : Json.Decode.Value
+    , order : Float
+    }
+
+
+
+--
+
+
+type alias Variant =
+    { meta : Meta
+    , expression : Program.Api.Type.AndExpression
+    }
+
+
+
+--
+
+
+type alias Meta =
+    { name : String
+    , description : String
+    , data : Json.Decode.Value
+
+    --
+    , author : Maybe (Id.Id Program.Api.User.User)
+    , order : Float
+
+    --
+    , created : Time.Posix
+    , modified : Time.Posix
+    }

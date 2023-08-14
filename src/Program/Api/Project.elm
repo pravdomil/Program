@@ -5,7 +5,7 @@ import Id
 import Id.Random
 import Json.Decode
 import Json.Encode
-import Program.Api.Declaration
+import Program.Api.Id
 import Program.Api.User
 import Task
 import Time
@@ -17,8 +17,8 @@ type alias Project =
     , data : Json.Decode.Value
 
     --
-    , declarations : Dict.Any.Dict (Id.Id Program.Api.Declaration.Declaration) Program.Api.Declaration.Declaration
-    , activeDeclaration : Maybe (Id.Id Program.Api.Declaration.Declaration)
+    , declarations : Dict.Any.Dict (Id.Id Program.Api.Id.Declaration) Program.Api.Id.Declaration
+    , activeDeclaration : Maybe (Id.Id Program.Api.Id.Declaration)
 
     --
     , author : Maybe (Id.Id Program.Api.User.User)

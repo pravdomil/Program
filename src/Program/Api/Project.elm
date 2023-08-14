@@ -18,7 +18,7 @@ type alias Project =
 
     --
     , declarations : Dict.Any.Dict (Id.Id Program.Api.Id.Declaration) Program.Api.Id.Declaration
-    , activeDeclaration : Maybe (Id.Id Program.Api.Id.Declaration)
+    , selection : List (Id.Id Program.Api.Id.Declaration)
 
     --
     , author : Maybe (Id.Id Program.Api.User.User)

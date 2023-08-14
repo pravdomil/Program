@@ -37,7 +37,7 @@ new =
                 ""
                 (Json.Encode.object [])
                 Dict.Any.empty
-                Nothing
+                []
                 Nothing
                 x2
                 x2

@@ -3,7 +3,6 @@ module Program.Api.Declaration exposing (..)
 import Dict.Any
 import Id
 import Json.Decode
-import Program.Api.FunctionExpression
 import Program.Api.User
 import Time
 
@@ -21,7 +20,7 @@ type Declaration
 type alias Function =
     { meta : Meta
     , inputs : Dict.Any.Dict (Id.Id Input) Input
-    , expression : Program.Api.FunctionExpression.FunctionExpression
+    , expression : FunctionExpression
     }
 
 
@@ -148,3 +147,46 @@ type alias ReferenceTypeExpression =
     { reference : Id.Id Declaration
     , inputs : Dict.Any.Dict (Id.Id Input) AndTypeExpression
     }
+
+
+
+-- FUNCTION
+
+
+type FunctionExpression
+    = Unit
+    | Application
+    | OperatorApplication
+    | FunctionOrValue
+    | IfBlock
+    | PrefixOperator
+    | Operator
+      --
+    | Negation
+    | TupledExpression
+    | ParenthesizedExpression
+    | LetExpression
+    | CaseExpression
+    | LambdaExpression
+    | RecordExpr
+    | ListExpr
+    | RecordAccess
+    | RecordAccessFunction
+    | RecordUpdateExpression
+      --
+    | Value_ Value
+
+
+
+--
+
+
+type Value
+    = Integer Int
+    | Hex Int
+    | Float_ Float
+      --
+    | CharLiteral Char
+    | String_ String
+      --
+    | Glsl String

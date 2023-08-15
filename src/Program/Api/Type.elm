@@ -3,7 +3,6 @@ module Program.Api.Type exposing (..)
 import Dict.Any
 import Id
 import Json.Decode
-import Program.Api.Id
 
 
 type Expression
@@ -19,7 +18,7 @@ type Expression
 
 type alias AndTypeExpression =
     { expressions : Dict.Any.Dict (Id.Id SingleAndExpression) SingleAndExpression
-    , extends : Maybe (Id.Id Program.Api.Id.Input)
+    , extends : Maybe (Id.Id Input)
     }
 
 
@@ -41,7 +40,7 @@ type alias SingleAndExpression =
 
 
 type alias InputTypeExpression =
-    { input : Id.Id Program.Api.Id.Input
+    { input : Id.Id Input
     }
 
 
@@ -59,6 +58,6 @@ type alias FunctionTypeExpression =
 
 
 type alias ReferenceTypeExpression =
-    { reference : Id.Id Program.Api.Id.Declaration
-    , inputs : Dict.Any.Dict (Id.Id Program.Api.Id.Input) AndTypeExpression
+    { reference : Id.Id Declaration
+    , inputs : Dict.Any.Dict (Id.Id Input) AndTypeExpression
     }

@@ -33,7 +33,7 @@ type alias Function =
 type alias AndType =
     { meta : Meta
     , inputs : Dict.Any.Dict (Id.Id Input) Input
-    , expression : Program.Api.Type.AndExpression
+    , expression : Program.Api.Type.AndTypeExpression
     }
 
 
@@ -66,7 +66,7 @@ type alias Input =
 
 type alias Variant =
     { meta : Meta
-    , expression : Program.Api.Type.AndExpression
+    , expression : Program.Api.Type.AndTypeExpression
     }
 
 

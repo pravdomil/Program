@@ -7,17 +7,17 @@ import Program.Api.Id
 
 
 type Expression
-    = AndExpression_ AndExpression
-    | InputExpression_ InputExpression
-    | FunctionExpression_ FunctionExpression
-    | ReferenceExpression_ ReferenceExpression
+    = AndExpression_ AndTypeExpression
+    | InputExpression_ InputTypeExpression
+    | FunctionExpression_ FunctionTypeExpression
+    | ReferenceExpression_ ReferenceTypeExpression
 
 
 
 --
 
 
-type alias AndExpression =
+type alias AndTypeExpression =
     { expressions : Dict.Any.Dict (Id.Id SingleAndExpression) SingleAndExpression
     , extends : Maybe (Id.Id Program.Api.Id.Input)
     }
@@ -40,7 +40,7 @@ type alias SingleAndExpression =
 --
 
 
-type alias InputExpression =
+type alias InputTypeExpression =
     { input : Id.Id Program.Api.Id.Input
     }
 
@@ -49,8 +49,8 @@ type alias InputExpression =
 --
 
 
-type alias FunctionExpression =
-    { expressions : Dict.Any.Dict (Id.Id AndExpression) AndExpression
+type alias FunctionTypeExpression =
+    { expressions : Dict.Any.Dict (Id.Id AndTypeExpression) AndTypeExpression
     }
 
 
@@ -58,7 +58,7 @@ type alias FunctionExpression =
 --
 
 
-type alias ReferenceExpression =
+type alias ReferenceTypeExpression =
     { reference : Id.Id Program.Api.Id.Declaration
-    , inputs : Dict.Any.Dict (Id.Id Program.Api.Id.Input) AndExpression
+    , inputs : Dict.Any.Dict (Id.Id Program.Api.Id.Input) AndTypeExpression
     }
